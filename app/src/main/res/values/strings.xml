@@ -29,7 +29,7 @@
     <!-- Error messages -->
 
     <string name="error">Error</string>
-    <string name="errorLogin">Error : connection refused!</string>
+    <string name="errorLogin">Connection refused!</string>
     <string name="errorConfirmPasswd">Passwords are different!</string>
     <string name="errorMissingField">Missing field!</string>
 

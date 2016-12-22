@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Scores</string>
+    <string name="btnLogin">Connexion</string>
+    <string name="btnRegister">Inscription</string>
+    <string name="btnSave">Sauvegarder</string>
+    <string name="btn_addScore">Ajouter un score</string>
+    <string name="btn_displayList">Afficher les jeux</string>
+    <string name="btn_displayTop">Top 10 d\'un jeux</string>
+    <string name="btn_listUser">Liste des utilisateurs</string>
+    <string name="closeApp">Voulez-vous fermer l\'application?</string>
+    <string name="error">Erreur</string>
+    <string name="errorConfirmPasswd">Les mots de passe sont différent!</string>
+    <string name="errorLogin">Connexion refusé!</string>
+    <string name="errorMissingField">Champs manquant!</string>
+    <string name="hello">Bonjour</string>
+    <string name="helloQuestion">Que voulez-vous faire ?</string>
+    <string name="hintConfirmPassword">Confirmation du mot de passe</string>
+    <string name="hintLogin">Pseudo</string>
+    <string name="hintPassword">Mot de passe</string>
+    <string name="loginMessage">Vous devez vous connectez pour utiliser l\'application.</string>
+    <string name="registered">Vous avez bien été enregistré!</string>
+    <string name="titleHomeActivity">Accueil</string>
+    <string name="titleLoginActivity">Connexion</string>
+    <string name="titleRegisterActivity">Inscription</string>
+</resources>
