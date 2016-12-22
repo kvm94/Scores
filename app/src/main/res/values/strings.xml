@@ -2,10 +2,24 @@
     <!-- activity_login.xml -->
 
     <string name="app_name">Scores</string>
+    <string name="titleLoginActivity">Connection</string>
     <string name="btnLogin">Log in</string>
     <string name="btnRegister">Register</string>
     <string name="hintLogin">Login</string>
     <string name="hintPassword">Password</string>
     <string name="loginMessage">You need to log in to access the application.</string>
+
+    <!-- activity_register.xml-->
+
+    <string name="titleRegisterActivity">Registration</string>
+    <string name="hintConfirmPassword">Confirm your password</string>
+    <string name="btnSave">Save</string>
+    <string name="registered">You have been successfully registered!</string>
+
+    <!-- Error messages -->
+
+    <string name="error">Error</string>
     <string name="errorLogin">Error : connection refused!</string>
+    <string name="errorConfirmPasswd">Passwords are different!</string>
+    <string name="errorMissingField">Missing field!</string>
 </resources>
