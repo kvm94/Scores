@@ -16,10 +16,24 @@
     <string name="btnSave">Save</string>
     <string name="registered">You have been successfully registered!</string>
 
+    <!-- activity_home.xml -->
+
+    <string name="titleHomeActivity">Home</string>
+    <string name="btn_addScore">Add a score</string>
+    <string name="btn_displayTop">Top 10 of a game</string>
+    <string name="btn_displayList">Display games</string>
+    <string name="btn_listUser">List of users</string>
+    <string name="hello">Hello</string>
+    <string name="helloQuestion">What do you want to do?</string>
+
     <!-- Error messages -->
 
     <string name="error">Error</string>
     <string name="errorLogin">Error : connection refused!</string>
     <string name="errorConfirmPasswd">Passwords are different!</string>
     <string name="errorMissingField">Missing field!</string>
+
+    <!-- Dialogs -->
+
+    <string name="closeApp">Do you want to close this app ?</string>
 </resources>

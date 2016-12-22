@@ -10,9 +10,14 @@ import android.widget.EditText;
 public class LoginActivity extends AppCompatActivity {
 
     public final static int REGISTER_REQUEST = 1;
+
     private EditText et_login;
     private EditText et_passwd;
     private Button btn_register;
+    private Button btn_login;
+
+    private String login;
+    private String passwd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +26,9 @@ public class LoginActivity extends AppCompatActivity {
 
         btn_register = (Button)findViewById(R.id.btn_Register);
         btn_register.setOnClickListener(listener_btn_register);
+
+        btn_login = (Button)findViewById(R.id.btn_Login);
+        btn_login.setOnClickListener(listener_btn_login);
 
         et_login = (EditText)findViewById(R.id.et_Login);
         et_passwd = (EditText)findViewById(R.id.et_Passwd);
@@ -35,6 +43,40 @@ public class LoginActivity extends AppCompatActivity {
         }
 
     };
+
+    private View.OnClickListener listener_btn_login = new View.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            try{
+                getValues();
+                /**
+                 * TODO Check if user is in DB
+                 */
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                intent.putExtra("login", login);
+                startActivity(intent);
+                finish();
+            }
+            catch (Exception ex){
+                Alert.showSimpleErrorAlert(LoginActivity.this, ex.getMessage());
+            }
+        }
+
+    };
+
+    private void getValues() throws Exception {
+        try{
+            login    = et_login.getText().toString();
+            passwd   = et_passwd.getText().toString();
+
+            if(login.equals("") || passwd.equals("")){
+                throw new Exception(getString(R.string.errorMissingField));
+            }
+        }
+        catch(Exception ex){
+            throw ex;
+        }
+    }
 
     /**
      * Recovers data from RegisterActivity.
