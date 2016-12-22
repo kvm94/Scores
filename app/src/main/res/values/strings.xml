@@ -1,3 +1,11 @@
 <resources>
+    <!-- activity_login.xml -->
+
     <string name="app_name">Scores</string>
+    <string name="btnLogin">Log in</string>
+    <string name="btnRegister">Register</string>
+    <string name="hintLogin">Login</string>
+    <string name="hintPassword">Password</string>
+    <string name="loginMessage">You need to log in to access the application.</string>
+    <string name="errorLogin">Error : connection refused!</string>
 </resources>
