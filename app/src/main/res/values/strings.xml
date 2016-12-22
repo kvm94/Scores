@@ -26,6 +26,22 @@
     <string name="hello">Hello</string>
     <string name="helloQuestion">What do you want to do?</string>
 
+    <!-- activity_add_score.xml -->
+
+    <string name="titleAddScoreActivity">Add a score</string>
+
+    <!-- activity_games.xml -->
+
+    <string name="titleGamesActivity">List of games</string>
+
+    <!-- activity_top.xml -->
+
+    <string name="titleTopActivity">Top 10</string>
+
+    <!-- activity_users.xml -->
+
+    <string name="titleUsersActivity">Users</string>
+
     <!-- Error messages -->
 
     <string name="error">Error</string>

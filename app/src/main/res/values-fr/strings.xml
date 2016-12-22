@@ -23,4 +23,8 @@
     <string name="titleHomeActivity">Accueil</string>
     <string name="titleLoginActivity">Connexion</string>
     <string name="titleRegisterActivity">Inscription</string>
+    <string name="titleAddScoreActivity">Ajouter un score</string>
+    <string name="titleGamesActivity">Liste des jeux</string>
+    <string name="titleTopActivity">Top 10</string>
+    <string name="titleUsersActivity">Utilisateurs</string>
 </resources>
