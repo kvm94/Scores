@@ -8,9 +8,11 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".LoginActivity"
-            android:label="@string/titleLoginActivity">
+            android:label="@string/titleLoginActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,10 +21,16 @@
         </activity>
         <activity
             android:name=".RegisterActivity"
-            android:label="@string/titleRegisterActivity"></activity>
+            android:label="@string/titleRegisterActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
         <activity
             android:name=".HomeActivity"
-            android:label="@string/titleHomeActivity"></activity>
+            android:label="@string/titleHomeActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
     </application>
 
 </manifest>

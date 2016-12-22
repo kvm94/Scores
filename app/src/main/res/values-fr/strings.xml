@@ -15,7 +15,7 @@
     <string name="errorMissingField">Champs manquant!</string>
     <string name="hello">Bonjour</string>
     <string name="helloQuestion">Que voulez-vous faire ?</string>
-    <string name="hintConfirmPassword">Confirmation du mot de passe</string>
+    <string name="hintConfirmPassword">Confirmation</string>
     <string name="hintLogin">Pseudo</string>
     <string name="hintPassword">Mot de passe</string>
     <string name="loginMessage">Vous devez vous connectez pour utiliser l\'application.</string>
