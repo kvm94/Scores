@@ -11,11 +11,61 @@
     tools:context="be.condorcet.marra.scores.LoginActivity">
 
     <TextView
+        android:text="@string/loginMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_LoginMessage"
+        android:textStyle="normal|bold"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="51dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/et_Login"
+        android:hint="@string/hintLogin"
+        android:layout_weight="1"
+        android:layout_above="@+id/et_Passwd"
+        android:layout_alignStart="@+id/tv_LoginMessage"
+        android:layout_marginBottom="24dp"
+        android:layout_alignEnd="@+id/tv_LoginMessage" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="46dp"
+        android:layout_height="55dp"
+        android:id="@+id/btnLoginLayout"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:text="@string/btnLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/btn_Login"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/et_Passwd"
+            android:layout_weight="1" />
+
+        <Button
+            android:text="@string/btnRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/btn_Register"
+            android:layout_alignEnd="@+id/et_Passwd"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <TextView
         android:layout_height="wrap_content"
         android:id="@+id/tv_ErrorMessage"
         android:layout_width="match_parent"
-        android:layout_marginBottom="42dp"
-        android:layout_above="@+id/btn_Login"
+        android:layout_marginBottom="46dp"
+        android:layout_above="@+id/btnLoginLayout"
         android:layout_alignParentStart="true" />
 
     <EditText
@@ -23,49 +73,11 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:layout_above="@+id/tv_ErrorMessage"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="28dp"
         android:id="@+id/et_Passwd"
-        android:hint="@string/hintPassword" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_above="@+id/et_Passwd"
-        android:layout_marginBottom="25dp"
-        android:id="@+id/et_Login"
-        android:layout_alignEnd="@+id/et_Passwd"
-        android:hint="@string/hintLogin" />
-
-    <TextView
-        android:text="@string/loginMessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="43dp"
-        android:id="@+id/tv_LoginMessage"
-        android:layout_above="@+id/et_Login"
-        android:layout_centerHorizontal="true"
-        android:textStyle="normal|bold" />
-
-    <Button
-        android:text="@string/btnRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_Register"
-        android:layout_below="@+id/tv_ErrorMessage"
-        android:layout_alignEnd="@+id/et_Passwd" />
-
-    <Button
-        android:text="@string/btnLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="104dp"
-        android:id="@+id/btn_Login"
-        android:elevation="0dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/et_Passwd" />
+        android:hint="@string/hintPassword"
+        android:layout_marginBottom="44dp"
+        android:layout_above="@+id/tv_ErrorMessage"
+        android:layout_alignStart="@+id/et_Login"
+        android:layout_alignEnd="@+id/et_Login" />
 
 </RelativeLayout>
