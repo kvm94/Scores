@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import be.condorcet.marra.scores.RPC.RegisterAsync;
+
 public class RegisterActivity extends AppCompatActivity {
 
     //Attributes
@@ -76,14 +78,10 @@ public class RegisterActivity extends AppCompatActivity {
         public void onClick(View v){
             try{
                 getValue();
-                /**
-                 * TODO Register into Database.
-                 */
+                String[] params = {login, passwd};
 
+                new RegisterAsync(RegisterActivity.this).execute(params);
 
-
-                setResult(RESULT_OK, intent_return);
-                finish();
             }
             catch (Exception ex){
                 Alert.showSimpleErrorAlert(RegisterActivity.this, ex.getMessage());
@@ -91,4 +89,27 @@ public class RegisterActivity extends AppCompatActivity {
 
         }
     };
+
+    public void responseAsync(Integer[] response){
+
+        intent_return.putExtra("id", response[1]);
+
+        switch(response[0]){
+            case 0:
+                setResult(RESULT_OK, intent_return);
+                Alert.showConfirmationMessage(RegisterActivity.this, getString(R.string.registered), this);
+                break;
+            case 200:
+                Alert.showSimpleErrorAlert(RegisterActivity.this, getString(R.string.errorUserExist));
+                break;
+            case 1000:
+                Alert.showSimpleErrorAlert(RegisterActivity.this, getString(R.string.errorDB));
+                break;
+            default :
+                Alert.showSimpleAlert(RegisterActivity.this, getString(R.string.unknownError) + " (code:" + response[0] + ")");
+                break;
+        }
+    }
 }
+
+
