@@ -51,6 +51,7 @@
     <string name="errorMissingField">Missing field!</string>
     <string name="errorUserExist">This user already exist!</string>
     <string name="errorDB">Error with database!</string>
+    <string name="errorLoginPasswd">Bad login or password!</string>
 
     <!-- Dialogs -->
 

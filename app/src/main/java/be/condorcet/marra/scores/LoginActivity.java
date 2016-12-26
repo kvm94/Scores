@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import be.condorcet.marra.scores.RPC.LoginAsync;
+
 public class LoginActivity extends AppCompatActivity {
 
     public final static int REGISTER_REQUEST = 1;
@@ -18,6 +20,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private String login;
     private String passwd;
+    private int    userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +52,9 @@ public class LoginActivity extends AppCompatActivity {
         public void onClick(View v){
             try{
                 getValues();
-                /**
-                 * TODO Check if user is in DB
-                 */
-                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                intent.putExtra("login", login);
-                startActivity(intent);
-                finish();
+                String[] params = {login, passwd};
+                new LoginAsync(LoginActivity.this).execute(params);
+
             }
             catch (Exception ex){
                 Alert.showSimpleErrorAlert(LoginActivity.this, ex.getMessage());
@@ -84,12 +83,34 @@ public class LoginActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         if(requestCode == REGISTER_REQUEST){
             if(resultCode == RESULT_OK){
-                String login = data.getStringExtra("login");
-                String passwd = data.getStringExtra("passwd");
+                login = data.getStringExtra("login");
+                passwd = data.getStringExtra("passwd");
+                userId = data.getIntExtra("id", -1);
                 et_login.setText(login);
                 et_passwd.setText(passwd);
             }
         }
 
+    }
+
+    public void responseAsync(Integer response){
+        //callback
+        switch(response){
+            case 0:
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                intent.putExtra("login", login);
+                startActivity(intent);
+                finish();
+                break;
+            case 200:
+                Alert.showSimpleErrorAlert(LoginActivity.this, getString(R.string.errorLoginPasswd));
+                break;
+            case 1000:
+                Alert.showSimpleErrorAlert(LoginActivity.this, getString(R.string.errorDB));
+                break;
+            default :
+                Alert.showSimpleAlert(LoginActivity.this, getString(R.string.unknownError) + " (code:" + response + ")");
+                break;
+        }
     }
 }
