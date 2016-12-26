@@ -14,11 +14,14 @@ public class HomeActivity extends AppCompatActivity {
     String login;
     String hello;
     TextView tv;
+    TextView tv_id;
 
     Button btn_add;
     Button btn_top;
     Button btn_game;
     Button btn_users;
+
+    int userId;
 
 
     @Override
@@ -28,6 +31,10 @@ public class HomeActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         hello = getString(R.string.hello) + " " + intent.getStringExtra("login") + ". " + getString(R.string.helloQuestion);
+        userId = intent.getIntExtra("id", -1);
+
+        tv_id = (TextView)findViewById(R.id.tv_id);
+        tv_id.setText("id: " + userId);
 
         tv = (TextView)findViewById(R.id.textView);
         tv.setText(hello);
@@ -51,6 +58,7 @@ public class HomeActivity extends AppCompatActivity {
         @Override
         public void onClick(View v){
             Intent intent = new Intent(HomeActivity.this, AddScoreActivity.class);
+            intent.putExtra("id", userId);
             startActivity(intent);
         }
 

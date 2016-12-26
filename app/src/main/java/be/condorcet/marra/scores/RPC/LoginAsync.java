@@ -1,6 +1,7 @@
 package be.condorcet.marra.scores.RPC;
 
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.util.JsonReader;
 
 import java.io.BufferedWriter;
@@ -13,6 +14,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
 
+import be.condorcet.marra.scores.Alert;
 import be.condorcet.marra.scores.LoginActivity;
 import be.condorcet.marra.scores.RegisterActivity;
 
@@ -20,7 +22,7 @@ import be.condorcet.marra.scores.RegisterActivity;
  * Created by Kevin on 24-12-16.
  */
 
-public class LoginAsync  extends AsyncTask<String,Void,Integer> {
+public class LoginAsync  extends AsyncTask<String,Void,Integer[]> {
     private LoginActivity screen;
 
     public LoginAsync(LoginActivity screen){
@@ -28,9 +30,11 @@ public class LoginAsync  extends AsyncTask<String,Void,Integer> {
     }
 
     @Override
-    protected Integer doInBackground(String... data) {
+    protected Integer[] doInBackground(String... data){
         // Exécution en arrière-plan
-        Integer response=-1;
+        Integer[] response = new Integer[2];
+        response[0] = -1;
+        response[1] = -1;
         try {
             String pseudo = data[0];
             String mdp = data[1];
@@ -50,7 +54,6 @@ public class LoginAsync  extends AsyncTask<String,Void,Integer> {
 
             connection.setConnectTimeout(10000);
             connection.connect();
-            response = connection.getResponseCode();
 
 
             if(connection.getResponseCode()  == 200){
@@ -59,21 +62,32 @@ public class LoginAsync  extends AsyncTask<String,Void,Integer> {
                 InputStreamReader inputStreamReader;
                 inputStreamReader=new InputStreamReader(inputStream,"UTF-8");
 
-                Scanner scanner = new Scanner(inputStreamReader);
+                JsonReader json_reader = new JsonReader(inputStreamReader);
+                json_reader.beginObject();
+                while (json_reader.hasNext()){
+                    String name = json_reader.nextName();
+                    if(name.equals("code")){
+                        response[0] = json_reader.nextInt();
+                    }
+                    if(json_reader.nextName().equals("id")){
+                        response[1] = json_reader.nextInt();
 
-                response = scanner.nextInt();
+                    }
+
+                }
+                json_reader.endObject();
             }
             else
-                response = connection.getResponseCode();
+                response[0] = connection.getResponseCode();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
         return response;
     }
     @Override
-    protected void onPostExecute(Integer result) {
+    protected void onPostExecute(Integer[] result) {
         // Callback
         screen.responseAsync(result);
     }

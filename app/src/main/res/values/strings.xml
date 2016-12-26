@@ -29,6 +29,10 @@
     <!-- activity_add_score.xml -->
 
     <string name="titleAddScoreActivity">Add a score</string>
+    <string name="hintScore">Score</string>
+    <string name="hintNameGame">Name of the game</string>
+    <string name="btn_games">Games</string>
+    <string name="scoreAdded">Your score has been successfully added!</string>
 
     <!-- activity_games.xml -->
 

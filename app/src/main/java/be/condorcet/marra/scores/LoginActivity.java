@@ -93,12 +93,13 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public void responseAsync(Integer response){
-        //callback
-        switch(response){
+    public void responseAsync(Integer[] response){
+        userId = response[1];
+        switch(response[0]){
             case 0:
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                 intent.putExtra("login", login);
+                intent.putExtra("id", userId);
                 startActivity(intent);
                 finish();
                 break;

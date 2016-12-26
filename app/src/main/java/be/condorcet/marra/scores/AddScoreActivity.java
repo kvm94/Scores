@@ -1,13 +1,76 @@
 package be.condorcet.marra.scores;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutCompat;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+import be.condorcet.marra.scores.RPC.AddScoreAsync;
 
 public class AddScoreActivity extends AppCompatActivity {
+
+    private EditText et_nameGame;
+    private EditText et_score;
+    private Button   btn_games;
+    private Button btn_addScore;
+    private int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_score);
+
+        Intent intent = getIntent();
+        userId = intent.getIntExtra("id", -1);
+
+        et_nameGame = (EditText)findViewById(R.id.et_jeux);
+        et_score = (EditText)findViewById(R.id.et_score);
+
+        btn_addScore = (Button)findViewById(R.id.btn_addScore);
+        btn_addScore.setOnClickListener(listener_btn_addScore);
+        btn_games = (Button)findViewById(R.id.btn_games);
+        btn_games.setOnClickListener(listener_btn_games);
+    }
+
+    private View.OnClickListener listener_btn_addScore = new View.OnClickListener(){
+        @Override
+        public void onClick(View v){
+
+            try{
+                String game = et_nameGame.getText().toString();
+                String score = et_score.getText().toString();
+                String idS = Integer.toString(userId);
+
+                String[] params = {game, score, idS};
+                new AddScoreAsync(AddScoreActivity.this).execute(params);
+            }
+            catch (Exception ex){
+                Alert.showSimpleErrorAlert(AddScoreActivity.this, ex.getMessage());
+            }
+
+        }
+
+    };
+
+    private View.OnClickListener listener_btn_games = new View.OnClickListener(){
+        @Override
+        public void onClick(View v){
+
+        }
+
+    };
+
+    public void responseAsync(Integer code){
+        switch (code){
+            case 0:
+                Alert.showConfirmationMessage(AddScoreActivity.this, getString(R.string.scoreAdded), this);
+                break;
+            default:
+                Alert.showSimpleAlert(AddScoreActivity.this, getString(R.string.unknownError) + " (code:" + code + ")");
+                break;
+        }
     }
 }
