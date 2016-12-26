@@ -1,9 +1,7 @@
 package be.condorcet.marra.scores.RPC;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
-import android.support.v7.app.AlertDialog;
 import android.util.JsonReader;
 
 import java.io.BufferedWriter;
@@ -14,22 +12,25 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
 
-import be.condorcet.marra.scores.Alert;
+import be.condorcet.marra.scores.GamesWizard;
 import be.condorcet.marra.scores.LoginActivity;
-import be.condorcet.marra.scores.RegisterActivity;
 
 /**
- * Created by Kevin on 24-12-16.
+ * Created by Kevin on 26-12-16.
  */
 
-public class LoginAsync  extends AsyncTask<String,Void,Integer[]> {
-    private LoginActivity screen;
-    private ProgressDialog progDailog;
-    public LoginAsync(LoginActivity screen){
+public class LoadGamesAsync extends AsyncTask<String,Void,ArrayList<String>> {
+
+    private GamesWizard screen;
+    private int code;
+
+    public LoadGamesAsync(GamesWizard screen){
         this.screen = screen;
     }
+    private ProgressDialog progDailog;
 
     @Override
     protected void onPreExecute() {
@@ -43,33 +44,24 @@ public class LoginAsync  extends AsyncTask<String,Void,Integer[]> {
     }
 
     @Override
-    protected Integer[] doInBackground(String... data){
+    protected ArrayList<String> doInBackground(String... data){
         // Exécution en arrière-plan
-        Integer[] response = new Integer[2];
-        response[0] = -1;
-        response[1] = -1;
-        try {
-            String pseudo = data[0];
-            String mdp = data[1];
+        ArrayList<String> response = new ArrayList<String>();
 
-            URL url = new URL("http://www.kmarra.be/rpc/se_connecter.php");
+        try {
+            URL url = new URL("http://www.kmarra.be/rpc/lister_jeux.php");
             HttpURLConnection connection;
             connection = (HttpURLConnection) url.openConnection();
 
-            connection.setRequestMethod("POST");
-            OutputStream os = connection.getOutputStream();
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-            String parametres_post="pseudo=" + pseudo + "&mdp=" + mdp;
-            writer.write(parametres_post);
-            writer.flush();
-            writer.close();
-            os.close();
+            connection.setRequestProperty("Content-Type", "text/plain");
+            connection.setRequestProperty("charset", "utf-8");
 
-            connection.setConnectTimeout(5000);
+            connection.setConnectTimeout(1000);
             connection.connect();
 
 
             if(connection.getResponseCode()  == 200){
+
                 InputStream inputStream = connection.getInputStream();
                 connection.setReadTimeout(5000);
                 InputStreamReader inputStreamReader;
@@ -78,29 +70,36 @@ public class LoginAsync  extends AsyncTask<String,Void,Integer[]> {
                 JsonReader json_reader = new JsonReader(inputStreamReader);
                 json_reader.beginObject();
                 while (json_reader.hasNext()){
-                    String name = json_reader.nextName();
-                    if(name.equals("code")){
-                        response[0] = json_reader.nextInt();
-                    }
-                    if(json_reader.nextName().equals("id")){
-                        response[1] = json_reader.nextInt();
 
+                    if(json_reader.nextName().equals("code")){
+                        code = json_reader.nextInt();
                     }
 
+                    if(json_reader.nextName().equals("jeux")){
+                        json_reader.beginArray();
+
+                        while (json_reader.hasNext()) {
+                            json_reader.beginObject();
+                            if (json_reader.nextName().equals("nom_jeu")) {
+                                response.add(json_reader.nextString());
+                            }
+                            json_reader.endObject();
+                        }
+                    }
+                    json_reader.endArray();
                 }
                 json_reader.endObject();
+                json_reader.close();
             }
-            else
-                response[0] = connection.getResponseCode();
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
         return response;
     }
     @Override
-    protected void onPostExecute(Integer[] result) {
+    protected void onPostExecute(ArrayList<String> result) {
         // Callback
         progDailog.dismiss();
         screen.responseAsync(result);

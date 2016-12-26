@@ -34,6 +34,11 @@
     <string name="btn_games">Games</string>
     <string name="scoreAdded">Your score has been successfully added!</string>
 
+    <!-- activity_games_wizard.xml -->
+
+    <string name="titleGames">List of games :</string>
+    <string name="btn_select">Select</string>
+
     <!-- activity_games.xml -->
 
     <string name="titleGamesActivity">List of games</string>

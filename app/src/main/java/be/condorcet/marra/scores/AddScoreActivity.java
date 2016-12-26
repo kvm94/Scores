@@ -12,6 +12,8 @@ import be.condorcet.marra.scores.RPC.AddScoreAsync;
 
 public class AddScoreActivity extends AppCompatActivity {
 
+    private final int GAMES_REQUEST = 2;
+
     private EditText et_nameGame;
     private EditText et_score;
     private Button   btn_games;
@@ -58,10 +60,24 @@ public class AddScoreActivity extends AppCompatActivity {
     private View.OnClickListener listener_btn_games = new View.OnClickListener(){
         @Override
         public void onClick(View v){
-
+            Intent intent = new Intent(AddScoreActivity.this, GamesWizard.class);
+            startActivityForResult(intent, GAMES_REQUEST );
         }
 
     };
+    /**
+     *
+     * *Recovers data from GamesWizard.
+     */
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(requestCode == GAMES_REQUEST){
+            if(resultCode == RESULT_OK){
+                et_nameGame.setText(data.getStringExtra("game"));
+            }
+        }
+
+    }
+
 
     public void responseAsync(Integer code){
         switch (code){
