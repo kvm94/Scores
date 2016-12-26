@@ -44,7 +44,11 @@
             android:name=".UsersActivity"
             android:label="@string/titleUsersActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".GamesWizard"></activity>
+        <activity
+            android:name=".GamesWizard"
+            android:label="@string/labelGamesWizard"
+            android:screenOrientation="portrait" />
+        />
     </application>
 
 </manifest>

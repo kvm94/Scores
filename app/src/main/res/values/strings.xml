@@ -37,6 +37,7 @@
     <!-- activity_games_wizard.xml -->
 
     <string name="titleGames">List of games :</string>
+    <string name="labelGamesWizard">Game selector</string>
     <string name="btn_select">Select</string>
 
     <!-- activity_games.xml -->

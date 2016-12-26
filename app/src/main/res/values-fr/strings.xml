@@ -27,4 +27,15 @@
     <string name="titleGamesActivity">Liste des jeux</string>
     <string name="titleTopActivity">Top 10</string>
     <string name="titleUsersActivity">Utilisateurs</string>
+    <string name="btn_games">Jeux</string>
+    <string name="btn_select">Choisir</string>
+    <string name="errorDB">Erreur de connexion avec la base de données!</string>
+    <string name="errorLoginPasswd">Mauvais pseudo/mdp!</string>
+    <string name="errorUserExist">Cet utilisateur éxiste déjà!</string>
+    <string name="hintNameGame">Nom du jeu</string>
+    <string name="hintScore">Score</string>
+    <string name="labelGamesWizard">Sélectioneur de jeu</string>
+    <string name="scoreAdded">Ton score a bien été ajouté!</string>
+    <string name="titleGames">Liste des jeux :</string>
+    <string name="unknownError">Erreur inconue</string>
 </resources>
