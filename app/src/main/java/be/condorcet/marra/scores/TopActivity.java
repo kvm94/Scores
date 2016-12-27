@@ -101,6 +101,12 @@ public class TopActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
 
                 break;
+            case 100:
+                Alert.showSimpleAlert(TopActivity.this, getString(R.string.errorGameEmpty));
+                break;
+            case 500:
+                Alert.showSimpleAlert(TopActivity.this, getString(R.string.errorNoPlayerFound));
+                break;
             default:
                 Alert.showSimpleAlert(TopActivity.this, getString(R.string.unknownError) + " (code:" + code + ")");
                 break;
