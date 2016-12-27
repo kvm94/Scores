@@ -6,11 +6,11 @@ import android.util.JsonReader;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import be.condorcet.marra.scores.R;
 import be.condorcet.marra.scores.TopActivity;
 
 
@@ -32,7 +32,7 @@ public class TopAsync extends AsyncTask<String, Void, ArrayList<String[]>> {
     protected void onPreExecute() {
         super.onPreExecute();
         progDailog = new ProgressDialog(screen);
-        progDailog.setMessage("Loading...");
+        progDailog.setMessage(screen.getString(R.string.loading));
         progDailog.setIndeterminate(false);
         progDailog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progDailog.setCancelable(true);

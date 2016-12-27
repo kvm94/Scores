@@ -14,6 +14,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import be.condorcet.marra.scores.LoginActivity;
+import be.condorcet.marra.scores.R;
 
 
 public class LoginAsync  extends AsyncTask<String,Void,Integer[]> {
@@ -29,17 +30,19 @@ public class LoginAsync  extends AsyncTask<String,Void,Integer[]> {
         this.screen = screen;
     }
 
+    //Initialise la barre de chargement.
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
         progDailog = new ProgressDialog(screen);
-        progDailog.setMessage("Loading...");
+        progDailog.setMessage(screen.getString(R.string.loading));
         progDailog.setIndeterminate(false);
         progDailog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progDailog.setCancelable(true);
         progDailog.show();
     }
 
+    //Vérifie si l'utilisateur peut se connecter et récupère son ID
     @Override
     protected Integer[] doInBackground(String... data){
         // Exécution en arrière-plan
@@ -67,6 +70,7 @@ public class LoginAsync  extends AsyncTask<String,Void,Integer[]> {
             connection.connect();
 
 
+            //Récupère les infos à partir d'un JSON
             if(connection.getResponseCode()  == 200){
                 InputStream inputStream = connection.getInputStream();
                 connection.setReadTimeout(5000);
@@ -97,6 +101,8 @@ public class LoginAsync  extends AsyncTask<String,Void,Integer[]> {
 
         return response;
     }
+
+    //Renvoit le code erreur et l'ID.
     @Override
     protected void onPostExecute(Integer[] result) {
         // Callback

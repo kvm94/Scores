@@ -11,6 +11,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import be.condorcet.marra.scores.IGames;
+import be.condorcet.marra.scores.R;
 import be.condorcet.marra.scores.UsersActivity;
 
 
@@ -33,7 +34,7 @@ public class UserAsync extends AsyncTask<String,Void,ArrayList<String>> {
     protected void onPreExecute() {
         super.onPreExecute();
         progDailog = new ProgressDialog(screen);
-        progDailog.setMessage("Loading...");
+        progDailog.setMessage(screen.getString(R.string.loading));
         progDailog.setIndeterminate(false);
         progDailog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progDailog.setCancelable(true);

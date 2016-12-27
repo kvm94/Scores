@@ -65,8 +65,10 @@
     <string name="errorGameEmpty">Game field is empty!</string>
     <string name="errorNoPlayerFound">No player found for this game!</string>
     <string name="errorNoGameFound">No game found!</string>
+    <string name="errorNoScore">Score field is empty!</string>
 
     <!-- Dialogs -->
 
     <string name="closeApp">Do you want to close this app ?</string>
+    <string name="loading">Loading...</string>
 </resources>

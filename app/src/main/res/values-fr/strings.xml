@@ -38,4 +38,9 @@
     <string name="scoreAdded">Ton score a bien été ajouté!</string>
     <string name="titleGames">Liste des jeux :</string>
     <string name="unknownError">Erreur inconue</string>
+    <string name="errorGameEmpty">Le champ \"jeu\" est vide!</string>
+    <string name="errorNoGameFound">Pas de jeux trouvé!</string>
+    <string name="errorNoPlayerFound">Pas de joueur pour ce jeu !</string>
+    <string name="errorNoScore">Le champ score est vide!</string>
+    <string name="loading">Chargement...</string>
 </resources>

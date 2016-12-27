@@ -3,7 +3,6 @@ package be.condorcet.marra.scores;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -86,6 +85,15 @@ public class AddScoreActivity extends AppCompatActivity {
         switch (code){
             case 0:
                 Alert.showConfirmationMessage(AddScoreActivity.this, getString(R.string.scoreAdded), this);
+                break;
+            case 100:
+                Alert.showSimpleAlert(AddScoreActivity.this, getString(R.string.errorNoScore));
+                break;
+            case 110:
+                Alert.showSimpleAlert(AddScoreActivity.this, getString(R.string.errorGameEmpty));
+                break;
+            case 1000:
+                Alert.showSimpleAlert(AddScoreActivity.this, getString(R.string.errorDB));
                 break;
             default:
                 Alert.showSimpleAlert(AddScoreActivity.this, getString(R.string.unknownError) + " (code:" + code + ")");

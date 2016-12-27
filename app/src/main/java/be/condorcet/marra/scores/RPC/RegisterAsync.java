@@ -1,5 +1,6 @@
 package be.condorcet.marra.scores.RPC;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.JsonReader;
 
@@ -12,6 +13,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import be.condorcet.marra.scores.R;
 import be.condorcet.marra.scores.RegisterActivity;
 
 
@@ -20,10 +22,24 @@ public class RegisterAsync extends AsyncTask<String,Void,Integer[]> {
     //Attributs
 
     private RegisterActivity screen;
+    private ProgressDialog progDailog;
+
 
     //Constructeur
     public RegisterAsync(RegisterActivity screen){
         this.screen = screen;
+    }
+
+    //Initialise la barre de chargement.
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        progDailog = new ProgressDialog(screen);
+        progDailog.setMessage(screen.getString(R.string.loading));
+        progDailog.setIndeterminate(false);
+        progDailog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progDailog.setCancelable(true);
+        progDailog.show();
     }
 
     @Override
@@ -88,6 +104,7 @@ public class RegisterAsync extends AsyncTask<String,Void,Integer[]> {
     @Override
     protected void onPostExecute(Integer[] result) {
         // Callback
+        progDailog.dismiss();
         screen.responseAsync(result);
     }
 }

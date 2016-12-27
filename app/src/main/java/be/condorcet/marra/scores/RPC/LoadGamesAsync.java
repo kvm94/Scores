@@ -10,8 +10,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-import be.condorcet.marra.scores.GamesWizard;
 import be.condorcet.marra.scores.IGames;
+import be.condorcet.marra.scores.R;
 
 
 public class LoadGamesAsync extends AsyncTask<String,Void,ArrayList<String>> {
@@ -20,18 +20,20 @@ public class LoadGamesAsync extends AsyncTask<String,Void,ArrayList<String>> {
 
     private IGames screen;
     private int code;
+    private ProgressDialog progDailog;
 
+
+    //Constructeur
     public LoadGamesAsync(IGames screen){
         this.screen = screen;
     }
-    private ProgressDialog progDailog;
 
     //Initialise la barre de chargement.
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
         progDailog = new ProgressDialog(screen.getContext());
-        progDailog.setMessage("Loading...");
+        progDailog.setMessage(screen.getContext().getString(R.string.loading));
         progDailog.setIndeterminate(false);
         progDailog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progDailog.setCancelable(true);
