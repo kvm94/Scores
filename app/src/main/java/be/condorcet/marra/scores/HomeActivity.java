@@ -95,6 +95,8 @@ public class HomeActivity extends AppCompatActivity {
                 .setMessage(getString(R.string.closeApp))
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
+                        onStop();
+                        onDestroy();
                         onDestroy();
                     }
                 })

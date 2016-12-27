@@ -2,41 +2,51 @@ package be.condorcet.marra.scores.RPC;
 
 import android.os.AsyncTask;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
 
 import be.condorcet.marra.scores.AddScoreActivity;
 
-/**
- * Created by Kevin on 26-12-16.
- */
-
 public class AddScoreAsync extends AsyncTask<String,Void,Integer> {
+
+    //Attributs
+
     private AddScoreActivity screen;
+
+    //Constructeur
 
     public AddScoreAsync(AddScoreActivity screen){
 
         this.screen = screen;
     }
 
+    //Méthodes surchargées
+
+    /**
+     * Exécute la tâche en arrière plan.
+     * @param data
+     * @return Integer
+     */
     @Override
     protected Integer doInBackground(String... data) {
-        // Exécution en arrière-plan
+
         Integer response=-1;
+
         try {
+            //Récupère les données.
+
             String game = data[0];
             int score = Integer.parseInt(data[1]);
             int id = Integer.parseInt(data[2]);
 
             //Convertit les espace dans la requête GET;
             game = game.replace(" ", "%20");
+
+            //COnnexion au script php et envoie les paramètre en GET
 
             URL url = new URL("http://www.kmarra.be/rpc/ajouter_score.php?jeu=" + game + "&score=" + score + "&id=" + id);
             HttpURLConnection connection;
@@ -49,6 +59,8 @@ public class AddScoreAsync extends AsyncTask<String,Void,Integer> {
             connection.connect();
             response = connection.getResponseCode();
 
+
+            //Récupère les données renvoyées par le script php
 
             if(connection.getResponseCode()  == 200){
                 InputStream inputStream = connection.getInputStream();
@@ -69,6 +81,8 @@ public class AddScoreAsync extends AsyncTask<String,Void,Integer> {
 
         return response;
     }
+
+    //Exécute après le doInBackground
     @Override
     protected void onPostExecute(Integer result) {
         // Callback

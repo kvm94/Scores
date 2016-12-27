@@ -12,6 +12,8 @@ import be.condorcet.marra.scores.RPC.AddScoreAsync;
 
 public class AddScoreActivity extends AppCompatActivity {
 
+    //Attributs
+
     private final int GAMES_REQUEST = 2;
 
     private EditText et_nameGame;
@@ -25,12 +27,13 @@ public class AddScoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_score);
 
+        //Crée l'intent
         Intent intent = getIntent();
         userId = intent.getIntExtra("id", -1);
 
+        //Initialise le contenues de l'activité.
         et_nameGame = (EditText)findViewById(R.id.et_jeux);
         et_score = (EditText)findViewById(R.id.et_score);
-
         btn_addScore = (Button)findViewById(R.id.btn_addScore);
         btn_addScore.setOnClickListener(listener_btn_addScore);
         btn_games = (Button)findViewById(R.id.btn_games);

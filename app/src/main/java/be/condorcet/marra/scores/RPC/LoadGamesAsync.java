@@ -4,25 +4,18 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.JsonReader;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 
 import be.condorcet.marra.scores.GamesWizard;
-import be.condorcet.marra.scores.LoginActivity;
 
-/**
- * Created by Kevin on 26-12-16.
- */
 
 public class LoadGamesAsync extends AsyncTask<String,Void,ArrayList<String>> {
+
+    //Attributs
 
     private GamesWizard screen;
     private int code;
@@ -32,6 +25,7 @@ public class LoadGamesAsync extends AsyncTask<String,Void,ArrayList<String>> {
     }
     private ProgressDialog progDailog;
 
+    //Initialise la barre de chargement.
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -43,12 +37,17 @@ public class LoadGamesAsync extends AsyncTask<String,Void,ArrayList<String>> {
         progDailog.show();
     }
 
+    //Récupère les données du RPC
     @Override
     protected ArrayList<String> doInBackground(String... data){
+
         // Exécution en arrière-plan
         ArrayList<String> response = new ArrayList<String>();
 
         try {
+
+            //Lance le script php du serveur
+
             URL url = new URL("http://www.kmarra.be/rpc/lister_jeux.php");
             HttpURLConnection connection;
             connection = (HttpURLConnection) url.openConnection();
@@ -59,6 +58,8 @@ public class LoadGamesAsync extends AsyncTask<String,Void,ArrayList<String>> {
             connection.setConnectTimeout(1000);
             connection.connect();
 
+
+            //Récupère les données du JSON
 
             if(connection.getResponseCode()  == 200){
 
@@ -98,6 +99,8 @@ public class LoadGamesAsync extends AsyncTask<String,Void,ArrayList<String>> {
 
         return response;
     }
+
+    //Termine la tâche.
     @Override
     protected void onPostExecute(ArrayList<String> result) {
         // Callback

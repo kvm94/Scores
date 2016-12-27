@@ -1,9 +1,7 @@
 package be.condorcet.marra.scores.RPC;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
-import android.support.v7.app.AlertDialog;
 import android.util.JsonReader;
 
 import java.io.BufferedWriter;
@@ -14,19 +12,19 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Scanner;
 
-import be.condorcet.marra.scores.Alert;
 import be.condorcet.marra.scores.LoginActivity;
-import be.condorcet.marra.scores.RegisterActivity;
 
-/**
- * Created by Kevin on 24-12-16.
- */
 
 public class LoginAsync  extends AsyncTask<String,Void,Integer[]> {
+
+    //Attributs
+
     private LoginActivity screen;
     private ProgressDialog progDailog;
+
+    //Constructeur
+
     public LoginAsync(LoginActivity screen){
         this.screen = screen;
     }

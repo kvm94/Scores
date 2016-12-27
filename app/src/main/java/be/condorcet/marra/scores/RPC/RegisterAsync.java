@@ -10,19 +10,18 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Scanner;
 
 import be.condorcet.marra.scores.RegisterActivity;
 
-/**
- * Created by Kevin on 24-12-16.
- */
 
 public class RegisterAsync extends AsyncTask<String,Void,Integer[]> {
+
+    //Attributs
+
     private RegisterActivity screen;
 
+    //Constructeur
     public RegisterAsync(RegisterActivity screen){
         this.screen = screen;
     }
