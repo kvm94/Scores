@@ -107,6 +107,9 @@ public class TopActivity extends AppCompatActivity {
             case 500:
                 Alert.showSimpleAlert(TopActivity.this, getString(R.string.errorNoPlayerFound));
                 break;
+            case 1000:
+                Alert.showSimpleAlert(TopActivity.this, getString(R.string.errorDB));
+                break;
             default:
                 Alert.showSimpleAlert(TopActivity.this, getString(R.string.unknownError) + " (code:" + code + ")");
                 break;
