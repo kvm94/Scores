@@ -12,7 +12,7 @@
 
     <Button
         android:text="@string/btn_listUser"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="26dp"
         android:id="@+id/btn_users"
@@ -29,16 +29,16 @@
 
     <Button
         android:text="@string/btn_addScore"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="85dp"
         android:id="@+id/btn_add"
         android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_width="250dp" />
 
     <Button
         android:text="@string/btn_displayTop"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:id="@+id/btn_displayTop"
         android:layout_centerVertical="true"
@@ -46,7 +46,7 @@
 
     <Button
         android:text="@string/btn_displayList"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="23dp"
         android:id="@+id/btn_displayGames"
