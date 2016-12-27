@@ -43,6 +43,11 @@ public class TopActivity extends AppCompatActivity {
         btn_select.setOnClickListener(listener_btn_select);
         et_nameGame = (EditText)findViewById(R.id.et_nameGame);
 
+        //Ce lance si la demande a été faite par l'option "afficher jeux".
+        Intent intent = getIntent();
+        if(intent.hasExtra("game"))
+            et_nameGame.setText(intent.getStringExtra("game"));
+
         //Pour la liste dynamique.
         items = new ArrayList<String>();
 

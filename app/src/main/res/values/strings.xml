@@ -64,6 +64,7 @@
     <string name="errorLoginPasswd">Bad login or password!</string>
     <string name="errorGameEmpty">Game field is empty!</string>
     <string name="errorNoPlayerFound">No player found for this game!</string>
+    <string name="errorNoGameFound">No game found!</string>
 
     <!-- Dialogs -->
 

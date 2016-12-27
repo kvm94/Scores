@@ -1,5 +1,6 @@
 package be.condorcet.marra.scores;
 
+import android.content.Context;
 import android.content.Intent;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import be.condorcet.marra.scores.RPC.AddScoreAsync;
 import be.condorcet.marra.scores.RPC.LoadGamesAsync;
 
-public class GamesWizard extends AppCompatActivity {
+public class GamesWizard extends AppCompatActivity implements IGames{
 
     private Button btn_select;
     private RadioGroup rdG;
@@ -35,15 +36,21 @@ public class GamesWizard extends AppCompatActivity {
 
         rdG = (RadioGroup)findViewById(R.id.rdG);
 
-        new LoadGamesAsync(GamesWizard.this).execute();
+        new LoadGamesAsync(this).execute();
     }
 
-    public void responseAsync(ArrayList<String> result){
+    @Override
+    public void responseAsync(ArrayList<String> result, int code){
         for(int i = 0 ; i<result.size();i++){
             RadioButton  r = new RadioButton(this);
             r.setText(result.get(i));
             rdG.addView(r);
         }
+    }
+
+    @Override
+    public Context getContext(){
+        return getApplicationContext();
     }
 
     private View.OnClickListener listener_btn_select = new View.OnClickListener(){

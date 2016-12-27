@@ -11,16 +11,17 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import be.condorcet.marra.scores.GamesWizard;
+import be.condorcet.marra.scores.IGames;
 
 
 public class LoadGamesAsync extends AsyncTask<String,Void,ArrayList<String>> {
 
     //Attributs
 
-    private GamesWizard screen;
+    private IGames screen;
     private int code;
 
-    public LoadGamesAsync(GamesWizard screen){
+    public LoadGamesAsync(IGames screen){
         this.screen = screen;
     }
     private ProgressDialog progDailog;
@@ -29,7 +30,7 @@ public class LoadGamesAsync extends AsyncTask<String,Void,ArrayList<String>> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        progDailog = new ProgressDialog(screen);
+        progDailog = new ProgressDialog(screen.getContext());
         progDailog.setMessage("Loading...");
         progDailog.setIndeterminate(false);
         progDailog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -105,6 +106,6 @@ public class LoadGamesAsync extends AsyncTask<String,Void,ArrayList<String>> {
     protected void onPostExecute(ArrayList<String> result) {
         // Callback
         progDailog.dismiss();
-        screen.responseAsync(result);
+        screen.responseAsync(result, code);
     }
 }
