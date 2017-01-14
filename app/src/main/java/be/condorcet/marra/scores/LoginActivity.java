@@ -109,6 +109,9 @@ public class LoginActivity extends AppCompatActivity {
             case 1000:
                 Alert.showSimpleErrorAlert(LoginActivity.this, getString(R.string.errorDB));
                 break;
+            case -100:
+                Alert.showSimpleErrorAlert(LoginActivity.this, getString(R.string.errorConnection));
+                break;
             default :
                 Alert.showSimpleAlert(LoginActivity.this, getString(R.string.unknownError) + " (code:" + response + ")");
                 break;

@@ -92,8 +92,8 @@ public class AddScoreAsync extends AsyncTask<String,Void,Integer> {
             else
                 response = connection.getResponseCode();
 
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            response = -100;
         }
 
         return response;

@@ -109,7 +109,7 @@ public class TopAsync extends AsyncTask<String, Void, ArrayList<String[]>> {
             }
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            code =-100;
         }
 
         return responses;

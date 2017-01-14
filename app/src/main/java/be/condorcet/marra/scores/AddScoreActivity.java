@@ -46,10 +46,20 @@ public class AddScoreActivity extends AppCompatActivity {
             try{
                 String game = et_nameGame.getText().toString();
                 String score = et_score.getText().toString();
+                int scoreInt = Integer.parseInt(et_score.getText().toString());
                 String idS = Integer.toString(userId);
 
-                String[] params = {game, score, idS};
-                new AddScoreAsync(AddScoreActivity.this).execute(params);
+                if(!score.equals("") && !game.equals("")){
+                    String[] params = {game, score, idS};
+                    new AddScoreAsync(AddScoreActivity.this).execute(params);
+                }
+                else{
+                    throw new Exception(getString(R.string.errorMissingField));
+                }
+
+            }
+            catch (NumberFormatException ex){
+                Alert.showSimpleErrorAlert(AddScoreActivity.this, getString(R.string.errorIntToLong));
             }
             catch (Exception ex){
                 Alert.showSimpleErrorAlert(AddScoreActivity.this, ex.getMessage());
@@ -94,6 +104,9 @@ public class AddScoreActivity extends AppCompatActivity {
                 break;
             case 1000:
                 Alert.showSimpleAlert(AddScoreActivity.this, getString(R.string.errorDB));
+                break;
+            case -100:
+                Alert.showSimpleErrorAlert(AddScoreActivity.this, getString(R.string.errorConnection));
                 break;
             default:
                 Alert.showSimpleAlert(AddScoreActivity.this, getString(R.string.unknownError) + " (code:" + code + ")");

@@ -66,6 +66,8 @@
     <string name="errorNoPlayerFound">No player found for this game!</string>
     <string name="errorNoGameFound">No game found!</string>
     <string name="errorNoScore">Score field is empty!</string>
+    <string name="errorIntToLong">Score is too long!</string>
+    <string name="errorConnection">Connection error!</string>
 
     <!-- Dialogs -->
 

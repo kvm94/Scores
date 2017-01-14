@@ -43,6 +43,9 @@ public class UsersActivity extends AppCompatActivity {
             case 1000:
                 Alert.showSimpleAlert(UsersActivity.this, getString(R.string.errorDB));
                 break;
+            case -100:
+                Alert.showSimpleErrorAlert(UsersActivity.this, getString(R.string.errorConnection));
+                break;
             default:
                 Alert.showSimpleAlert(UsersActivity.this, getString(R.string.unknownError) + " (code:" + code + ")");
                 break;

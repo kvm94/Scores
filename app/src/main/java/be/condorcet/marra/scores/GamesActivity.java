@@ -55,7 +55,7 @@ public class GamesActivity extends AppCompatActivity implements IGames{
         @Override
         public void onClick(View v){
             pos -= 5;
-            int end = pos -5;
+            int end = pos + 5;
 
             if(pos < 0 )
                 pos = 0;
@@ -125,6 +125,9 @@ public class GamesActivity extends AppCompatActivity implements IGames{
                 break;
             case 1000:
                 Alert.showSimpleAlert(GamesActivity.this, getString(R.string.errorDB));
+                break;
+            case -100:
+                Alert.showSimpleErrorAlert(GamesActivity.this, getString(R.string.errorConnection));
                 break;
             default:
                 Alert.showSimpleAlert(GamesActivity.this, getString(R.string.unknownError) + " (code:" + code + ")");

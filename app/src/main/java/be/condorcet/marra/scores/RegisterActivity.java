@@ -105,6 +105,9 @@ public class RegisterActivity extends AppCompatActivity {
             case 1000:
                 Alert.showSimpleErrorAlert(RegisterActivity.this, getString(R.string.errorDB));
                 break;
+            case -100:
+                Alert.showSimpleErrorAlert(RegisterActivity.this, getString(R.string.errorConnection));
+                break;
             default :
                 Alert.showSimpleAlert(RegisterActivity.this, getString(R.string.unknownError) + " (code:" + response[0] + ")");
                 break;

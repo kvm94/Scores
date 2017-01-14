@@ -13,6 +13,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import be.condorcet.marra.scores.Alert;
 import be.condorcet.marra.scores.LoginActivity;
 import be.condorcet.marra.scores.R;
 
@@ -95,8 +96,8 @@ public class LoginAsync  extends AsyncTask<String,Void,Integer[]> {
             else
                 response[0] = connection.getResponseCode();
 
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            response[0] = -100;
         }
 
         return response;

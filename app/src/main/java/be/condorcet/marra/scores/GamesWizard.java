@@ -41,11 +41,29 @@ public class GamesWizard extends AppCompatActivity implements IGames{
 
     @Override
     public void responseAsync(ArrayList<String> result, int code){
-        for(int i = 0 ; i<result.size();i++){
-            RadioButton  r = new RadioButton(this);
-            r.setText(result.get(i));
-            rdG.addView(r);
+        switch (code){
+            case 0:
+                for(int i = 0 ; i<result.size();i++){
+                    RadioButton  r = new RadioButton(this);
+                    r.setText(result.get(i));
+                    rdG.addView(r);
+                }
+
+                break;
+            case 500:
+                Alert.showSimpleAlert(GamesWizard.this, getString(R.string.errorNoGameFound));
+                break;
+            case 1000:
+                Alert.showSimpleAlert(GamesWizard.this, getString(R.string.errorDB));
+                break;
+            case -100:
+                Alert.showSimpleErrorAlert(GamesWizard.this, getString(R.string.errorConnection));
+                break;
+            default:
+                Alert.showSimpleAlert(GamesWizard.this, getString(R.string.unknownError) + " (code:" + code + ")");
+                break;
         }
+
     }
 
     @Override

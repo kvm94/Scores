@@ -28,6 +28,8 @@ public class TopActivity extends AppCompatActivity {
     private ListView list;
     private ArrayAdapter<String> adapter;
     private ArrayList<String> items;
+    private String game;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +46,7 @@ public class TopActivity extends AppCompatActivity {
         et_nameGame = (EditText)findViewById(R.id.et_nameGame);
 
         //Ce lance si la demande a été faite par l'option "afficher jeux".
-        Intent intent = getIntent();
+        intent = getIntent();
         if(intent.hasExtra("game"))
             et_nameGame.setText(intent.getStringExtra("game"));
 
@@ -72,7 +74,7 @@ public class TopActivity extends AppCompatActivity {
         @Override
         public void onClick(View v){
             try{
-                String game = et_nameGame.getText().toString();
+                game = et_nameGame.getText().toString();
                 new TopAsync(TopActivity.this).execute(game);
             }
             catch (Exception ex){
@@ -99,6 +101,7 @@ public class TopActivity extends AppCompatActivity {
             case 0:
 
                 items.clear();
+                items.add("Jeu : " + game);
                 for (int i=0;i< result.size() ; i++) {
                     items.add((i+1) + ") " + result.get(i)[0] + " : " + result.get(i)[1] );
                 }
@@ -114,6 +117,9 @@ public class TopActivity extends AppCompatActivity {
                 break;
             case 1000:
                 Alert.showSimpleAlert(TopActivity.this, getString(R.string.errorDB));
+                break;
+            case -100:
+                Alert.showSimpleErrorAlert(TopActivity.this, getString(R.string.errorConnection));
                 break;
             default:
                 Alert.showSimpleAlert(TopActivity.this, getString(R.string.unknownError) + " (code:" + code + ")");

@@ -95,8 +95,8 @@ public class RegisterAsync extends AsyncTask<String,Void,Integer[]> {
             else
                 response[0] = connection.getResponseCode();
 
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            response[0] = -100;
         }
 
         return response;
